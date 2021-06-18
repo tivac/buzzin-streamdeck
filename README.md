@@ -3,10 +3,11 @@
 ## Install
 
 1. Install node.js
-2. npx degit tivac/buzzin-streamdeck
-3. `cd buzzin-streamdeck`
-4. `npm install`
-5. `npm start`
+1. Open a command window
+1. `npx degit tivac/buzzin-streamdeck`
+1. `cd buzzin-streamdeck`
+1. `npm install`
+1. `npm start`
 
 You've now got a server running at http://localhost:3000 and a browser window showing http://buzzin.live that is scriptable.
 
