@@ -6,6 +6,10 @@ const polka = require('polka');
 const { getDocument, queries } = require('pptr-testing-library')
 const { findByText } = queries;
 
+const PAGE_WIDTH = 768;
+const PAGE_HEIGHT= 1024;
+const SERVER_PORT = 3000;
+
 let browser;
 let page;
 let $document;
@@ -15,8 +19,13 @@ let waitForReady = new Promise((resolve) => (ready = resolve));
 (async () => {
     browser = await puppeteer.launch({
         headless : false,
+        defaultViewport : {
+            width: Math.floor(PAGE_WIDTH),
+            height: Math.floor(PAGE_HEIGHT * 0.9),
+        },
+
         args: [
-            "--window-size=1024,768",
+            `--window-size=${PAGE_WIDTH},${PAGE_HEIGHT}`,
         ]
     });
     
@@ -49,7 +58,9 @@ polka()
 
         res.end(`Hi`);
     })
-    .listen(3000, () => {
-        console.log(`> Running on localhost:3000`);
+    .listen(SERVER_PORT, () => {
+        console.log(`> Running on localhost:${SERVER_PORT}`);
+
+        waitForReady.then(() => console.log("Headless browser is ready"));
     });
 
